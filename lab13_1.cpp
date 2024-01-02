@@ -17,3 +17,54 @@ int main(){
     cout << "\nMin = " << B[5];
     return 0;
 }
+
+void stat(const double A[], int N, double B[]){
+    double max, min = A[0];
+    double product = 1;
+    double total, sum = 0;
+    double arithMean, SD, geoMean, harmoMean;
+    
+    for (int i = 0; i < N; i++){
+        total += A[i];
+    }
+    arithMean = total/N;
+
+    for (int i = 0; i < N; i++){
+        sum += pow(A[i] - arithMean, 2);
+    }
+    SD = sqrt(sum/(N));
+
+    for (int i = 0; i < N; i++){
+        product *= A[i];
+    }
+    geoMean = pow(product,1.0/N);
+
+    sum = 0;
+    for (int i = 0; i < N; i++){
+        sum += 1/A[i];
+    }
+    harmoMean = N/sum;
+
+    for (int i = 0; i < N; i++){
+        if (A[i] < max){
+            continue;
+        }else{
+            max = A[i];
+        }
+    }
+
+    for (int i = 0; i < N; i++){
+        if (A[i] > min){
+            continue;
+        }else{
+            min = A[i];
+        }
+    }
+
+    B[0] = arithMean;
+    B[1] = SD;
+    B[2] = geoMean;
+    B[3] = harmoMean;
+    B[4] = max;
+    B[5] = min;
+}
